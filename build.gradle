@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "is.ru.tictactoe.TicTacToe"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+
+    testCompile 'junit:junit:4.11'
+
+    compile 'net.joningi:icndb-java-api:1.0'
+    compile 'com.sparkjava:spark-core:2.5'
+}
+
+task stage {
+  dependsOn installDist
+}
