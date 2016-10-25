@@ -3,7 +3,7 @@ package is.ru.tictactoe;
 public class TicTacToe {
 
     public String something() {
-        return "hello";
+        return "this is something";
     }
 
     //public static void main(String[] args) {
