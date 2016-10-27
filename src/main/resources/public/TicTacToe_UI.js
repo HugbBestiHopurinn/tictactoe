@@ -2,7 +2,6 @@ current_player = "X";
 game_mode = "single";
 $('table').hide();
 
-
 $('.btn').click(function (){
     if ($(this).attr("game_mode") == "multi") {
         game_mode = "single";
@@ -49,4 +48,7 @@ function switch_player() {
 
 function reset_board() {
     $('td').html("").removeClass("marked");
+    $('ul').show();
+    game_mode = "single";
+    current_player = "X";
 }
