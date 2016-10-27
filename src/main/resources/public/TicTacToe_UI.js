@@ -1,7 +1,10 @@
+// Start settings
 current_player = "X";
 game_mode = "single";
 $('table').hide();
 
+// Select Game Mode
+// Single Player or Multiplayer
 $('.btn').click(function (){
     if ($(this).attr("game_mode") == "multi") {
         game_mode = "single";
@@ -12,11 +15,14 @@ $('.btn').click(function (){
     $('table').show();
 });
 
+// Clicking square on board
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
     mark_move(cell_number);
 });
 
+// Marks the move on the board, if a legal move
+// and let's the server know which move was made.
 function mark_move(cell_number) {
     cell = $("[data-id='" + cell_number + "']");
     if (cell.hasClass("marked")) {
@@ -46,6 +52,8 @@ function switch_player() {
     }
 }
 
+// To be run on game over and
+// for game restart
 function reset_board() {
     $('td').html("").removeClass("marked");
     $('ul').show();
