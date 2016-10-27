@@ -21,8 +21,7 @@ public class TicTacToeWeb implements SparkApplication {
     public void init() {
         final TicTacToe tictactoe = new TicTacToe();
         //post("/random", (req, res) -> chuck.random());
-        get("/something", (req, res) -> tictactoe.something());
-
+        post("/player_move", (req, res) -> tictactoe.make_move(req.queryParams("player"), req.queryParams("cell")));
         //post("/id", (req, res) -> chuck.getById(req.queryParams("id")));
         //post("/setName", (req, res) -> {
         //        chuck.alterName(
