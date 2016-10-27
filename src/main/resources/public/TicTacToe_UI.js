@@ -15,7 +15,6 @@ $('.btn').click(function (){
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
     mark_move(cell_number);
-    switch_player();
 });
 
 function mark_move(cell_number) {
@@ -23,6 +22,7 @@ function mark_move(cell_number) {
     if (cell.hasClass("marked")) {
         alert("You can't do that");
     } else {
+        switch_player();
         cell.addClass("marked");
         if (current_player == "X") {
             cell.css("color", "rgb(250,0,0)");
