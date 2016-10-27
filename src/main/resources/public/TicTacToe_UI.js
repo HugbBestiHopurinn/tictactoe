@@ -1,5 +1,17 @@
 current_player = "X";
-game_mode = "single_player";
+game_mode = "single";
+$('table').hide();
+
+
+$('.btn').click(function (){
+    if ($(this).attr("game_mode") == "multi") {
+        game_mode = "single";
+    } else {
+        game_mode = "multi";
+    }
+    $('ul').hide();
+    $('table').show();
+});
 
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
