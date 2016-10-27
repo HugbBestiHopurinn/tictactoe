@@ -4,6 +4,7 @@ game_mode = "single_player";
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
     mark_move(cell_number);
+    switch_player();
 });
 
 function mark_move(cell_number) {
@@ -22,7 +23,6 @@ function mark_move(cell_number) {
         var player_move = "player_move?player=" + current_player + "&cell=" + cell_number;
         console.log("Player move: " + player_move);
         $.post(player_move, function( data ) {
-            switch_player();
         });
     }
 }
