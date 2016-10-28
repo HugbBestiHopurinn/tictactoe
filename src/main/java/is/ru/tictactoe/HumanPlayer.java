@@ -1,4 +1,4 @@
 package is.ru.tictactoe;
 
-public class TicTacToe {
+public class HumanPlayer {
 }
