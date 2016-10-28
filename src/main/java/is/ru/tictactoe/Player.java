@@ -1,4 +1,4 @@
 package is.ru.tictactoe;
 
-public abstract class Play {
+public class Play {
 }
