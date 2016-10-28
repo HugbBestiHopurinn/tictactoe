@@ -2,7 +2,7 @@ package is.ru.tictactoe;
 
 public class TicTacToe {
 
-    public String something() {
+    public static String something() {
         return "this is something";
     }
 
