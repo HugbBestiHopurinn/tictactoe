@@ -16,7 +16,6 @@ before_script:
   - chmod +x gradlew
 script:
   - ./gradlew check
-  - ./gradlew codeCoverageReport
 after_success:
   - .utility/initiate-publish.sh
   - .utility/push-javadoc-to-gh-pages.sh
