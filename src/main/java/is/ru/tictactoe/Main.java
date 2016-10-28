@@ -1,6 +1,6 @@
 package is.ru.tictactoe;
 
-public class TicTacToe {
+public class Main {
 
     public String make_move(String player, String cell) {
         return "Server has received move information.";
