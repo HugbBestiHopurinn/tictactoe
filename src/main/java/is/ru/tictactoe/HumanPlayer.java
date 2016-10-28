@@ -1,4 +1,4 @@
 package is.ru.tictactoe;
 
-public class HumanPlayer {
+public class HumanPlayer extends Player {
 }

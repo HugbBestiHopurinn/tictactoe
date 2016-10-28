@@ -1,6 +1,11 @@
 package is.ru.tictactoe;
 
+import java.util.Scanner;
+
 public class TicTacToe {
+  private Board board;
+  private Scanner scanner = new Scanner(System.in);
+
     public String make_move(String player, String cell) {
         return "Server has received move information.";
 	}
