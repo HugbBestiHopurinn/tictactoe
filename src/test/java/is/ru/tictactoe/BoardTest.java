@@ -1,6 +1,6 @@
 package is.ru.tictactoe;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.rules.ExpectedException;
@@ -28,4 +28,35 @@ public class BoardTest {
     board.setBoardColRow(1, 1, player1.playerName);
 		assertEquals('X', board.getBoardColRow(1, 1));
 	}
+
+	@Test
+	public void testVerticalCheck() {
+		board.setBoard(0, 0, 'x');
+		board.setBoard(1, 0, 'x');
+		board.setBoard(2, 0, 'x');
+		assertTrue(board.verticalCheck());
+		assertFalse(board.horizontalCheck());
+		assertFalse(board.crossCheck());
+	}
+
+	@Test
+	public void testHorizontallCheck() {
+		board.setBoard(1, 1, 'x');
+		board.setBoard(1, 0, 'x');
+		board.setBoard(1, 2, 'x');
+		assertFalse(board.verticalCheck());
+		assertTrue(board.horizontalCheck());
+		assertFalse(board.crossCheck());
+	}
+
+	@Test
+	public void testCrossCheck() {
+		board.setBoard(0, 0, 'x');
+		board.setBoard(1, 1, 'x');
+		board.setBoard(2, 2, 'x');
+		assertFalse(board.verticalCheck());
+		assertFalse(board.horizontalCheck());
+		assertTrue(board.crossCheck());
+	}
+
 }
