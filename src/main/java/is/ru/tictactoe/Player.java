@@ -16,5 +16,4 @@ public abstract class Player {
   	this.board = board;
   }
 
-  abstract void makeMove();
 }
