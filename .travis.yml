@@ -17,6 +17,5 @@ before_script:
 script:
   - ./gradlew check
 after_success:
-  - .utility/initiate-publish.sh
-  - .utility/push-javadoc-to-gh-pages.sh
+  - bin/push-javadoc-to-gh-pages.sh
   - bash <(curl -s https://codecov.io/bash)
