@@ -11,7 +11,7 @@ import java.io.PrintStream;
 public class TicTacToeTest {
 	private TicTacToe ticTacToe;
 
-	@Before 
+	@Before
 	public void setUp() {
 		ticTacToe = new TicTacToe();
 	}
@@ -27,5 +27,13 @@ public class TicTacToeTest {
 		System.setOut(new PrintStream(outContent));
 		ticTacToe.declareWinner('X');
 		assertEquals(outContent.toString(), "WE HAVE A WINNER: X");
+	}
+
+	@Test
+	public void testDeclareDraw() {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		ticTacToe.declareDraw();
+		assertEquals(outContent.toString(), "WE HAVE A DRAW!");
 	}
 }
