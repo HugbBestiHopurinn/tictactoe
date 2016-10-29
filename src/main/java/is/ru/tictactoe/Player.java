@@ -7,7 +7,7 @@ public abstract class Player {
   protected int lastColMove;
   protected int numOfMoves = 0;
 
-  public Player ( char playerName, Borad board){
+  public Player(char playerName, Board board) {
   	this.playerName = playerName;
   	this.board = board;
   }
