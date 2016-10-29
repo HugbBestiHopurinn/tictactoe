@@ -11,4 +11,9 @@ public abstract class Player {
   	this.playerName = playerName;
   	this.board = board;
   }
+
+  protected void setBoard(Board board) {
+  	this.board = board;
+  }
+
 }
