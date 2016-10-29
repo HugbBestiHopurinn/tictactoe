@@ -17,7 +17,7 @@ public class TicTacToeTest {
 	public void testDeclareWinner() {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
-		TicTacToe ticTacToe = New TicTacToe();
+		TicTacToe ticTacToe = new TicTacToe();
 		ticTacToe.declareWinner();
 		assertEquals(outContent.ToString(), "WE HAVE A WINNER: X");
 	}
