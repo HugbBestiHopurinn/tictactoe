@@ -8,6 +8,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class TicTacToeTest {
+	@Before 
+	public void setUp() {
+		TicTacToe ticTacToe = new TicTacToe();
+	}
+
 	@Test
 	public void testSomething() {
 		assertEquals("this is something", TicTacToe.something());
@@ -17,8 +22,7 @@ public class TicTacToeTest {
 	public void testDeclareWinner() {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
-		TicTacToe ticTacToe = new TicTacToe();
-		ticTacToe.declareWinner();
-		assertEquals(outContent.ToString(), "WE HAVE A WINNER: X");
+		ticTacToe.declareWinner('X');
+		assertEquals(outContent., "WE HAVE A WINNER: X");
 	}
 }

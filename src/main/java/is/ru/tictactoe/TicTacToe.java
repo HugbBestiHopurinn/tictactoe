@@ -19,6 +19,6 @@ public class TicTacToe {
     //}
 
     public void declareWinner (char winner) {
-        System.out.println("WE HAVE A WINNER: " + winner);
+        System.out.print("WE HAVE A WINNER: " + winner);
     }
 }
