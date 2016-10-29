@@ -19,4 +19,20 @@ public class Board {
   	this.player1 = player1;
   	this.player2 = player2;
   }
+
+  public void setBoardColRow(int col, int row, char player) {
+    this.board[col][row] = player;
+  }
+
+  public char getBoardColRow(int col, int row) {
+    return this.board[col][row];
+  }
+
+  public void registerMove(Player player) {
+    numOfMoves++;
+    int col = player.lastColMove;
+    int row = player.lastRowMove;
+    board[col][row] = player.playerName;
+    //printBoardStatus();
+  }
 }

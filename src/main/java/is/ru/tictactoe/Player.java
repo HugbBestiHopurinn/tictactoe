@@ -16,4 +16,10 @@ public abstract class Player {
   	this.board = board;
   }
 
+  public void setLastRowMove(int lastRowMove) {
+    this.lastRowMove = lastRowMove;
+  }
+  public void setLastColMove(int lastColMove) {
+    this.lastColMove = lastColMove;
+  }
 }
