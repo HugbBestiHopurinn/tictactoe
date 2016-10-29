@@ -26,6 +26,6 @@ public class TicTacToeTest {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		ticTacToe.declareWinner('X');
-		assertEquals(outContent.toString(), "WE HAVE A WINNER: X");
+		assertEquals(outContent.toString(), "WE HAVE Al WINNER: X");
 	}
 }
