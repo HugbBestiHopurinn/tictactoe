@@ -42,29 +42,15 @@ public class TicTacToe {
         return win_status;
     }
 
-    private class Player {
-        public int [] board = {0,0,0,0,0,0,0,0,0};
-        private int binarySumOfPlayersBoard = 0;
-        public boolean hasWon = false;
-        public void makeMove(String moveIndex) {
-            int move = Integer.parseInt(moveIndex);
-            this.board[move] = 1;
-        }
-    }
-
-    private class HumanPlayer extends Player {}
-
-    private class ComputerPlayer extends Player {}
-
     // Called by TicTacToeWeb once at start of game
     // and is client's interface with server here.
     public String init(String gameType) {
         if (gameType.equals("single")) {
-            playerOne = new HumanPlayer();
-            playerTwo = new ComputerPlayer();
+            playerOne = new Player();
+            playerTwo = new Player();
         } else {
-            playerOne = new HumanPlayer();
-            playerTwo = new HumanPlayer();
+            playerOne = new Player();
+            playerTwo = new Player();
         }
         return "Game Started";
     }
