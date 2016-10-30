@@ -38,13 +38,13 @@ function computer_moves() {
         isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked") && $('.marked').length != 9;
     }
 
-    
+
     var computer_move = "player_move?player=" + current_player + "&cell=" + randomNumber;
     $($('td')[randomNumber]).addClass("marked").html("0").css('color', 'rgb(0,0,250)');
     console.log("marking");
     $.post(computer_move, function( data ) {
         if (response["HasWon"] == "true") {
-            alert(response["CurrentPlayer"] + "wins!");
+            alert(response["CurrentPlayer"] + " wins!");
             window.location.reload();
         } else if ($('.marked').length == 9){
             alert("It's a draw!");
@@ -77,7 +77,7 @@ function mark_move(cell_number) {
         $.post(player_move, function( data ) {
             response = JSON.parse(data);
             if (response["HasWon"] == "true") {
-                alert(response["CurrentPlayer"] + "wins!");
+                alert(response["CurrentPlayer"] + " wins!");
                 window.location.reload().reload();
             } else if ($('.marked').length == 9){
                 alert("It's a draw!");
