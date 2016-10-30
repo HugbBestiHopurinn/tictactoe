@@ -6,6 +6,13 @@ public class Main {
         return "Server has received move information.";
     }
 
+    /* codecov skip start */
     public static void main(String[] args) {
+      TicTacToe ticTacToe = new TicTacToe();
+      do {
+          ticTacToe.setupGame();
+      } while(ticTacToe.continueGame());
     }
+    /* codecov skip start */
+
 }

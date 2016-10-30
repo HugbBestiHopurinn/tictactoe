@@ -121,4 +121,7 @@ public boolean horizontalCheck() {
        return numOfMoves == 9;
    }
 
+   public void setTicTacToe(TicTacToe ticTacToe) {
+     this.ticTacToe = ticTacToe;
+   }
 }
