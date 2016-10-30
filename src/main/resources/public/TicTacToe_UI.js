@@ -39,8 +39,8 @@ function computer_moves() {
     }
 
     
-    var computer_move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
-    $($('td')[randomNumber]).addClass("marked").html("O").css('color', 'rgb(0,0,250)');
+    var computer_move = "player_move?player=" + current_player + "&cell=" + randomNumber;
+    $($('td')[randomNumber]).addClass("marked").html("0").css('color', 'rgb(0,0,250)');
     console.log("marking");
     $.post(computer_move, function( data ) {
         if (response["HasWon"] == "true") {
