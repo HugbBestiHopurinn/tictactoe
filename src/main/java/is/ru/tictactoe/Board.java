@@ -88,7 +88,7 @@ public boolean horizontalCheck() {
        return false;
    }
  }
- 
+
 /* codecov skip start */
  public void startGame() {
      player1.setBoard(this);
@@ -116,5 +116,9 @@ public boolean horizontalCheck() {
      }
    }
    /* codecov skip start */
+
+   private boolean checkForDraw() {
+       return numOfMoves == 9;
+   }
 
 }
