@@ -87,6 +87,34 @@ public boolean horizontalCheck() {
    } else {
        return false;
    }
-}
+ }
+ 
+/* codecov skip start */
+ public void startGame() {
+     player1.setBoard(this);
+     player2.setBoard(this);
+
+     while(true) {
+         if(crossCheck() || horizontalCheck() || verticalCheck()) {
+             ticTacToe.declareWinner(winner);
+             break;
+         }
+
+         player1.makeMove();
+
+         if(checkForDraw()) {
+             ticTacToe.declareDraw();
+             break;
+         }
+
+         if(crossCheck() || horizontalCheck() || verticalCheck()) {
+             ticTacToe.declareWinner(winner);
+             break;
+         }
+
+         player2.makeMove();
+     }
+   }
+   /* codecov skip start */
 
 }
