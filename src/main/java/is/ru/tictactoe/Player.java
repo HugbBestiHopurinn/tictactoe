@@ -22,4 +22,16 @@ public abstract class Player {
   public void setLastColMove(int lastColMove) {
     this.lastColMove = lastColMove;
   }
+
+  public int getLastRowMove() {
+    return this.lastRowMove;
+  }
+
+  public int getLastColMove() {
+    return this.lastRowMove;
+  }
+
+  public int getNumOfMoves() {
+    return this.numOfMoves;
+  }
 }

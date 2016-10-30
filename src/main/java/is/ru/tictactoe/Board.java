@@ -29,6 +29,10 @@ public class Board {
     return this.board[col][row];
   }
 
+  public boolean checkMove(int col, int row) {
+      return !Character.isAlphabetic(board[col][row]);
+  }
+
   public void registerMove(Player player) {
     numOfMoves++;
     int col = player.lastColMove;

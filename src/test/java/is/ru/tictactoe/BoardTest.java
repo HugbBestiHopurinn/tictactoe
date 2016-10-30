@@ -18,16 +18,24 @@ public class BoardTest {
     player1 = new HumanPlayer('X', board);
     player2 = new HumanPlayer('O', board);
 		board = new Board(player1, player2);
-    player1.setLastRowMove(1);
-    player1.setLastColMove(1);
 	}
 
 	@Test
 	public void testRegisterMove() {
+    player1.setLastRowMove(1);
+    player1.setLastColMove(1);
     board.registerMove(player1);
     board.setBoardColRow(1, 1, player1.playerName);
 		assertEquals('X', board.getBoardColRow(1, 1));
 	}
+
+  @Test
+  public void testCheckMove() {
+    player1.setLastRowMove(1);
+    player1.setLastColMove(0);
+    board.registerMove(player1);
+    assertFalse(board.checkMove(0, 1));
+  }
 
 	@Test
 	public void testVerticalCheck1() {
@@ -108,5 +116,4 @@ public class BoardTest {
 		assertFalse(board.horizontalCheck());
 		assertTrue(board.crossCheck());
 	}
-
 }
