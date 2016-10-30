@@ -24,3 +24,5 @@ parsers:
       method: false
   javascript:
     enable_partials: false
+ignore:
+  - "src/main/java/is/ru/tictactoe/HumanPlayer.java"
