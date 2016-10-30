@@ -52,7 +52,7 @@ $('td').click(function(){
                 if (game_mode == "multi") {
                     computer_moves();
                 }
-            }, 500);
+            }, 200);
         });
     }
 
