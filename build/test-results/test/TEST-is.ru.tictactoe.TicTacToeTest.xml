@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="is.ru.tictactoe.TicTacToeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-10-30T20:42:32" hostname="Pala-Ogn-MacBook-Pro.local" time="0.02">
+  <properties/>
+  <testcase name="testCheckForVictory" classname="is.ru.tictactoe.TicTacToeTest" time="0.017"/>
+  <testcase name="testBinarySumIs256" classname="is.ru.tictactoe.TicTacToeTest" time="0.0"/>
+  <testcase name="testBinarySumIs1" classname="is.ru.tictactoe.TicTacToeTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

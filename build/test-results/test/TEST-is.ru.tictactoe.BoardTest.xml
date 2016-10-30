@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="is.ru.tictactoe.BoardTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2016-10-30T18:17:16" hostname="Pala-Ogn-MacBook-Pro.local" time="0.008">
+  <properties/>
+  <testcase name="testRegisterMove" classname="is.ru.tictactoe.BoardTest" time="0.004"/>
+  <testcase name="testHorizontallCheck1" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testHorizontallCheck2" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testHorizontallCheck3" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testCheckMove" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testCrossCheck1" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testCrossCheck2" classname="is.ru.tictactoe.BoardTest" time="0.001"/>
+  <testcase name="testVerticalCheck1" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testVerticalCheck2" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <testcase name="testVerticalCheck3" classname="is.ru.tictactoe.BoardTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
