@@ -6,7 +6,7 @@
 
 ## [Javadoc](https://hugbbestihopurinn.github.io/TicTacToe/javadoc/)
 
-## Play [Play Tic Tac Toe game](https://bestihopurtictactoe.herokuapp.com/)
+## [Play Tic Tac Toe game](https://bestihopurtictactoe.herokuapp.com/)
 
 
 ## Documentation
