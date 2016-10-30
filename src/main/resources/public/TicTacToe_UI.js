@@ -1,6 +1,7 @@
 // Start settings
 current_player = "X";
 game_mode = "single";
+
 $('table').hide();
 
 // Select Game Mode
@@ -34,18 +35,20 @@ function computer_moves() {
 
     while (isAlreadyMarked) {
         randomNumber = Math.floor(Math.floor(Math.random() * 8));
-        isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
-        console.log("bingo: " + randomNumber);
+        isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked") && $('.marked').length != 9;
     }
 
+    
+    var computer_move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
     $($('td')[randomNumber]).addClass("marked").html("O").css('color', 'rgb(0,0,250)');
-    var computer__move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
     console.log("marking");
-    $($('td')[randomNumber]).addClass("marked").html("O");
     $.post(computer_move, function( data ) {
         if (response["HasWon"] == "true") {
             alert(response["CurrentPlayer"] + "wins!");
-            window.location.reload().reload();
+            window.location.reload();
+        } else if ($('.marked').length == 9){
+            alert("It's a draw!");
+            window.location.reload();
         }
     });
     console.log("current player is: " + current_player);
@@ -76,6 +79,9 @@ function mark_move(cell_number) {
             if (response["HasWon"] == "true") {
                 alert(response["CurrentPlayer"] + "wins!");
                 window.location.reload().reload();
+            } else if ($('.marked').length == 9){
+                alert("It's a draw!");
+                window.location.reload();
             }
         });
         if (game_mode != "single") {
