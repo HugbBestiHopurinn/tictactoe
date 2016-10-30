@@ -18,6 +18,9 @@ source "~/.sdkman/bin/sdkman-init.sh"
 sdk install gradle 3.1
 ```
 + Setup the [Heroku Toolbelt](https://devcenter.heroku.com/articles/heroku-command-line)
-+ To run locally you can use heroku local -p <port number>
++ To run locally you can use heroku local -p 3000
+```sh
+localhost:3000
+```
 
-Travis is used as continous integration server and it runs after each commit to GitHub.
+
