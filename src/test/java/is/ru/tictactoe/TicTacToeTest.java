@@ -9,31 +9,30 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class TicTacToeTest {
-	private TicTacToe ticTacToe;
 
-	@Before
-	public void setUp() {
-		ticTacToe = new TicTacToe();
-	}
+    TicTacToe ticTacToe;
 
-	@Test
-	public void testSomething() {
-		assertEquals("this is something", TicTacToe.something());
-	}
+    @Before
+    public void setUp() {
+        ticTacToe = new TicTacToe();
+    }
 
-	@Test
-	public void testDeclareWinner() {
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		ticTacToe.declareWinner('X');
-		assertEquals(outContent.toString(), "WE HAVE A WINNER: X");
-	}
+    @Test
+    public void testBinarySumIs256() {
+        int[] board = {0, 0, 0, 0, 0, 0, 0, 0, 1};
+        assertEquals(256, ticTacToe.binarySum(board));
+    }
 
-	@Test
-	public void testDeclareDraw() {
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		ticTacToe.declareDraw();
-		assertEquals(outContent.toString(), "WE HAVE A DRAW!");
-	}
+    @Test
+    public void testBinarySumIs1() {
+        int[] board = {1, 0, 0, 0, 0, 0, 0, 0, 0};
+        assertEquals(1, ticTacToe.binarySum(board));
+    }
+
+    @Test
+    public void testCheckForVictory() {
+        int[] board = {1, 1, 1, 0, 0, 0, 0, 0, 0};
+        int sum = ticTacToe.binarySum(board);
+        assertEquals(true, ticTacToe.checkForVictory(sum));
+    }
 }
