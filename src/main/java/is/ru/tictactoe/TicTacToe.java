@@ -24,7 +24,18 @@ public class TicTacToe {
         }
         return sum;
     }
-
-    
-
+	
+    // Inputs: integer, the results from the binarySum operation on the playerOne.board or playerTwo.board
+    // Outputs: boolean, whether or not the player's board contains a victory configuration.
+    // Summary:
+    // We check the binary sum and see if therein lies a victory combo, by using & operations.
+    boolean check_for_victory(int sum) {
+        int victory_combo [] = {0x1C0, 0x38, 0x92, 0x54, 0x7, 0x124, 0x49, 0x111};
+        boolean win_status = false;
+        for (int i = 0; i < 8; i++) {
+            win_status = ((((victory_combo[i] & sum)
+                            == victory_combo[i]) != false) || (win_status != false));
+        }
+        return win_status;
+    }
 }
