@@ -18,3 +18,4 @@ script:
   - ./gradlew check
 after_success:
   - bin/push-javadoc-to-gh-pages.sh
+  - bash <(curl -s https://codecov.io/bash)
