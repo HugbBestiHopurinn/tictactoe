@@ -27,32 +27,24 @@ function computer_moves() {
     console.log("Computer moving");
     console.log("Current player: " + current_player);
     console.log("Game Mode: " + game_mode);
+    // Actually sending data to server via post request
+    randomNumber = Math.floor(Math.floor(Math.random() * 8));
+    isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
 
-    if (current_player == "0" && game_mode != "single") {
-        console.log("Proceeding.");
-        // Actually sending data to server via post request
+    while (isAlreadyMarked) {
         randomNumber = Math.floor(Math.floor(Math.random() * 8));
         isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
-
-        while (isAlreadyMarked) {
-            randomNumber = Math.floor(Math.floor(Math.random() * 8));
-            isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
-            console.log("bingo: " + randomNumber);
-        }
-
-        var computer__move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
-        console.log("marking");
-        $($('td')[randomNumber]).addClass("marked").html("O").css('color', 'rgb(0,0,250)');
-
-        if (isAlreadyMarked == false) {
-            console.log("hello");
-            $($('td')[randomNumber]).addClass("marked").html("O");
-            $.post(computer_move, function( data ) {
-                console.log(data);
-            });
-        }
-        switch_player();
+        console.log("bingo: " + randomNumber);
     }
+
+    $($('td')[randomNumber]).addClass("marked").html("O").css('color', 'rgb(0,0,250)');
+    var computer__move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
+    console.log("marking");
+    $($('td')[randomNumber]).addClass("marked").html("O");
+    $.post(computer_move, function( data ) {
+        console.log(data);
+    });
+    console.log("current player is: " + current_player);
 }
 
 // Marks the move on the board, if a legal move
@@ -78,8 +70,11 @@ function mark_move(cell_number) {
         $.post(player_move, function( data ) {
             console.log(data);
         });
-        switch_player();
-        computer_moves();
+        if (game_mode != "single") {
+            computer_moves();
+        } else {
+            switch_player();
+        }
     }
 }
 
