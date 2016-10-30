@@ -12,6 +12,8 @@ public abstract class Player {
   	this.board = board;
   }
 
+  abstract void makeMove();
+
   protected void setBoard(Board board) {
   	this.board = board;
   }
