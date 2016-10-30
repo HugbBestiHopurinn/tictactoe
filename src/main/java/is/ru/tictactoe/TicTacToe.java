@@ -1,5 +1,8 @@
 package is.ru.tictactoe;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class TicTacToe {
 
     String gameType;
@@ -29,7 +32,7 @@ public class TicTacToe {
     // Outputs: boolean, whether or not the player's board contains a victory configuration.
     // Summary:
     // We check the binary sum and see if therein lies a victory combo, by using & operations.
-    boolean check_for_victory(int sum) {
+    boolean checkForVictory(int sum) {
         int victory_combo [] = {0x1C0, 0x38, 0x92, 0x54, 0x7, 0x124, 0x49, 0x111};
         boolean win_status = false;
         for (int i = 0; i < 8; i++) {
@@ -38,4 +41,38 @@ public class TicTacToe {
         }
         return win_status;
     }
+
+
+    // Called by TicTacToeWeb and is client's interface
+    // with our server here.
+    public JSONObject moveMade(String player, String cell) {
+        if (player.equals("X")) {
+            playerOne.makeMove(cell);
+            JSONArray playerBoard = new JSONArray(playerOne.board);
+            JSONObject json = new JSONObject();
+
+            int binarySumOfPlayersBoard = binarySum(playerOne.board);
+            boolean winningStatus = checkForVictory(binarySumOfPlayersBoard);
+
+            json.put("CurrentPlayer", "PlayerOne");
+            json.put("PlayerBoard", playerBoard.toString());
+            json.put("HasWon", String.valueOf(winningStatus));
+            return json; // This will be our response to the client
+        } else {
+            playerTwo.makeMove(cell);
+            JSONArray playerBoard = new JSONArray(playerTwo.board);
+            JSONObject json = new JSONObject();
+
+            int binarySumOfPlayersBoard = binarySum(playerTwo.board);
+            boolean winningStatus = checkForVictory(binarySumOfPlayersBoard);
+
+            json.put(playerBoard.toString(), String.valueOf(winningStatus));
+            json.put("CurrentPlayer", "PlayerTwo");
+            json.put("PlayerBoard", playerBoard.toString());
+            json.put("HasWon", String.valueOf(winningStatus));
+            return json; // This is our response to the client
+
+        }
+    }
+
 }
