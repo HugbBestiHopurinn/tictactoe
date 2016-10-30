@@ -42,6 +42,18 @@ public class TicTacToe {
         return win_status;
     }
 
+    // Called by TicTacToeWeb once at start of game
+    // and is client's interface with server here.
+    public String init(String gameType) {
+        if (gameType.equals("single")) {
+            playerOne = new Player();
+            playerTwo = new Player();
+        } else {
+            playerOne = new Player();
+            playerTwo = new Player();
+        }
+        return "Game Started";
+    }
 
     // Called by TicTacToeWeb and is client's interface
     // with our server here.
