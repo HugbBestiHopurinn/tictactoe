@@ -14,9 +14,9 @@ public class TicTacToe {
     // Summary:
     // This takes each player's board (ignoring the other players placings)
     // of the form [1, 0, 0, 0, 0, 0, 0, 0, 0], where 1 represents that the player
-    // has made a mark. We transform this into a sum, which is stored as the binary number 100000000 for the exampe above.
+    // has made a mark. We transform this into a sum, which is stored as the binary number 000000001 for the exampe above (it is the reverse representation as binary).
     // This will then use & to figure out of this is one of the victory conditions.
-    int binarySum(int board []) {
+    public int binarySum(int board []) {
         int sum = 0;
         for (int i = 0; i < 9; i++) {
             int shift = (i - 1 != -1) ? (i - 1) : 0;
@@ -58,12 +58,7 @@ public class TicTacToe {
     // Called by TicTacToeWeb and is client's interface
     // with our server here.
     public JSONObject moveMade(String player, String cell) {
-        System.out.println("calling move made\n");
-        System.out.println(player);
-        System.out.println(cell);
-
         if (player.equals("X")) {
-            System.out.println("making move for X");
             playerOne.makeMove(cell);
             JSONArray playerBoard = new JSONArray(playerOne.board);
             JSONObject json = new JSONObject();
@@ -74,7 +69,6 @@ public class TicTacToe {
             json.put("CurrentPlayer", "PlayerOne");
             json.put("PlayerBoard", playerBoard.toString());
             json.put("HasWon", String.valueOf(winningStatus));
-            System.out.println("checking things");
             return json; // This will be our response to the client
         } else {
             playerTwo.makeMove(cell);

@@ -23,5 +23,4 @@ public class TicTacToeWeb implements SparkApplication {
         post("/init_game", (req, res) -> ticTacToe.init(req.queryParams("game_mode")));
         post("/player_move", (req, res) -> ticTacToe.moveMade(req.queryParams("player"), req.queryParams("cell")));
     }
-
 }
