@@ -1,15 +1,12 @@
 package is.ru.tictactoe;
 
+import org.json.JSONArray;
+
 public class TicTacToe {
 
     String gameType;
-
-    public String init(String gameType) {
-        if (gameType.equals("single")) {
-        } else {
-        }
-        return "hello";
-    }
+    Player playerOne;
+    Player playerTwo;
 
     int binarySum(int board []) {
         int sum = 0;
@@ -34,15 +31,26 @@ public class TicTacToe {
         return win_status;
     }
 
-    private interface Player {
-        int [] board = {0,0,0,0,0,0,0,0,0};
-        void makeMove();
+    private class Player {
+        public int [] board = {0,0,0,0,0,0,0,0,0};
+        public void makeMove(String moveIndex) {
+            int move = Integer.parseInt(moveIndex);
+            this.board[move] = 1;
+        }
     }
 
-    private abstract class HumanPlayer implements Player {
+    private class HumanPlayer extends Player {
+        public void makeMove(String moveIndex) {
+            int move = Integer.parseInt(moveIndex);
+            this.board[move] = 1;
+        }
     }
 
-    private abstract class ComputerPlayer implements Player {
+    private class ComputerPlayer extends Player {
+        public void makeMove(String moveIndex) {
+            int move = Integer.parseInt(moveIndex);
+            this.board[move] = 1;
+        }
     }
 
     //public static void main(String args[]) {
@@ -51,8 +59,31 @@ public class TicTacToe {
     //    int sum = game.binarySum(board);
     //}
 
-    public String moveMade(String player, String cell) {
-        return "hello";
+    // Called by TicTacToeWeb once at start of game
+    // and is client's interface with server here.
+    public String init(String gameType) {
+        if (gameType.equals("single")) {
+            playerOne = new HumanPlayer();
+            playerTwo = new ComputerPlayer();
+        } else {
+            playerOne = new HumanPlayer();
+            playerTwo = new HumanPlayer();
+        }
+        return "Game Started";
+    }
+
+    // Called by TicTacToeWeb and is client's interface
+    // with our server here.
+    public JSONArray moveMade(String player, String cell) {
+        if (player.equals("X")) {
+            playerOne.makeMove(cell);
+            JSONArray playerBoard = new JSONArray(playerOne.board);
+            return playerBoard;
+        } else {
+            playerTwo.makeMove(cell);
+            JSONArray playerBoard = new JSONArray(playerTwo.board);
+            return playerBoard;
+        }
     }
 
 }
