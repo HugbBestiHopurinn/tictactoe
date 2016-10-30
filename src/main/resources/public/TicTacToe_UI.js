@@ -34,7 +34,7 @@ $('td').click(function(){
         $.post(player_move, function( data ) {
             response = JSON.parse(data);
             if (response["HasWon"] == "true") {
-                alert(response["CurrentPlayer"] + "wins!");
+                alert(response["CurrentPlayer"] + " wins!");
                 window.location.reload();
             } else if (($('td.marked').length + 1) == 9){
                 alert("It's a draw!");
