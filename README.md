@@ -4,3 +4,4 @@
 
 Play [Tic Tac Toe game](https://bestihopurtictactoe.herokuapp.com/)
 
+[Design Report](docs/DesignReport.md)
