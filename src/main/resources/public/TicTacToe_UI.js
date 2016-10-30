@@ -22,7 +22,7 @@ $('.btn').click(function (){
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
 
-    cell = $("[data-id='" + cell_number + "']");
+    var cell = $("[data-id='" + cell_number + "']");
     if (cell.hasClass("marked")) {
         alert("You can't do that");
     } else {
@@ -46,50 +46,74 @@ $('td').click(function(){
                 } else {
                     cell.css("color", "rgb(0,0,250)");
                 }
-
                 switch_player();
             }
+            setTimeout(function() {
+                if (game_mode == "multi") {
+                    computer_moves();
+                }
+            }, 1000);
         });
-
-        //if (game_mode != "single") {
-        //    computer_moves();
-        //} else {
-        //    switch_player();
-        //}
     }
 
 
 });
 
 function computer_moves() {
-    console.log("Computer moving");
-    console.log("Current player: " + current_player);
-    console.log("Game Mode: " + game_mode);
-
     // Actually sending data to server via post request
-    randomNumber = Math.floor(Math.floor(Math.random() * 8));
-    isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
+    var randomNumber = Math.floor(Math.floor(Math.random() * 8));
+    var isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
+    var cell = $("[data-id='" + randomNumber + "']");
 
     while (isAlreadyMarked) {
         randomNumber = Math.floor(Math.floor(Math.random() * 8));
         isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked") && $('.marked').length != 9;
     }
-
-    
     var computer_move = "player_move?player=" + current_player + "&cell=" + randomNumber;
     $($('td')[randomNumber]).addClass("marked").html("0").css('color', 'rgb(0,0,250)');
-    console.log("marking");
+
     $.post(computer_move, function( data ) {
+        response = JSON.parse(data);
         if (response["HasWon"] == "true") {
             alert(response["CurrentPlayer"] + "wins!");
             window.location.reload();
-        } else if ($('.marked').length == 9){
+        } else if (($('td.marked').length + 1) == 9){
             alert("It's a draw!");
             window.location.reload();
+        } else {
+            //cell.addClass("marked").html(current_player);
+            //if (current_player == "X") {
+            //    cell.css("color", "rgb(250,0,0)");
+            //} else {
+            //    cell.css("color", "rgb(0,0,250)");
+            //}
+            switch_player();
         }
-    });
-    console.log("current player is: " + current_player);
+    })
+
+
 }
+
+//function computer_moves() {
+//    $.post(computer_move, function( data ) {
+//        response = JSON.parse(data);
+//        if (response["HasWon"] == "true") {
+//            alert(response["CurrentPlayer"] + "wins!");
+//            window.location.reload();
+//        } else if (($('td.marked').length + 1) == 9){
+//            alert("It's a draw!");
+//            window.location.reload();
+//        } else {
+//            cell.addClass("marked").html(current_player);
+//            if (current_player == "X") {
+//                cell.css("color", "rgb(250,0,0)");
+//            } else {
+//                cell.css("color", "rgb(0,0,250)");
+//            }
+//            switch_player();
+//        }
+//    })
+//}
 
 // Marks the move on the board, if a legal move
 // and let's the server know which move was made.
