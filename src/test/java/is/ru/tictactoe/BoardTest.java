@@ -18,7 +18,6 @@ public class BoardTest {
     player1 = new HumanPlayer('X', board);
     player2 = new HumanPlayer('O', board);
 		board = new Board(player1, player2);
-
 	}
 
 	@Test
@@ -37,6 +36,4 @@ public class BoardTest {
     board.registerMove(player1);
     assertFalse(board.checkMove(0, 1));
   }
-
-
 }
