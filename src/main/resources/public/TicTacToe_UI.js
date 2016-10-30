@@ -21,7 +21,44 @@ $('.btn').click(function (){
 // Clicking square on board
 $('td').click(function(){
     var cell_number = $(this).attr("data-id");
-    mark_move(cell_number);
+
+    cell = $("[data-id='" + cell_number + "']");
+    if (cell.hasClass("marked")) {
+        alert("You can't do that");
+    } else {
+        // Notify Server of Move
+        var player_move = "player_move?player=" + current_player + "&cell=" + cell_number;
+        console.log("Player move: " + player_move);
+
+        // Actually sending data to server via post request
+        $.post(player_move, function( data ) {
+            response = JSON.parse(data);
+            if (response["HasWon"] == "true") {
+                alert(response["CurrentPlayer"] + "wins!");
+                window.location.reload();
+            } else if (($('td.marked').length + 1) == 9){
+                alert("It's a draw!");
+                window.location.reload();
+            } else {
+                cell.addClass("marked").html(current_player);
+                if (current_player == "X") {
+                    cell.css("color", "rgb(250,0,0)");
+                } else {
+                    cell.css("color", "rgb(0,0,250)");
+                }
+
+                switch_player();
+            }
+        });
+
+        //if (game_mode != "single") {
+        //    computer_moves();
+        //} else {
+        //    switch_player();
+        //}
+    }
+
+
 });
 
 function computer_moves() {
