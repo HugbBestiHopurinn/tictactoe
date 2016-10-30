@@ -14,9 +14,9 @@ public class TicTacToe {
     // Summary:
     // This takes each player's board (ignoring the other players placings)
     // of the form [1, 0, 0, 0, 0, 0, 0, 0, 0], where 1 represents that the player
-    // has made a mark. We transform this into a sum, which is stored as the binary number 100000000 for the exampe above.
+    // has made a mark. We transform this into a sum, which is stored as the binary number 000000001 for the exampe above (it is the reverse representation as binary).
     // This will then use & to figure out of this is one of the victory conditions.
-    int binarySum(int board []) {
+    public int binarySum(int board []) {
         int sum = 0;
         for (int i = 0; i < 9; i++) {
             int shift = (i - 1 != -1) ? (i - 1) : 0;
@@ -32,7 +32,7 @@ public class TicTacToe {
     // Outputs: boolean, whether or not the player's board contains a victory configuration.
     // Summary:
     // We check the binary sum and see if therein lies a victory combo, by using & operations.
-    boolean check_for_victory(int sum) {
+    boolean checkForVictory(int sum) {
         int victory_combo [] = {0x1C0, 0x38, 0x92, 0x54, 0x7, 0x124, 0x49, 0x111};
         boolean win_status = false;
         for (int i = 0; i < 8; i++) {
@@ -64,7 +64,7 @@ public class TicTacToe {
             JSONObject json = new JSONObject();
 
             int binarySumOfPlayersBoard = binarySum(playerOne.board);
-            boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
+            boolean winningStatus = checkForVictory(binarySumOfPlayersBoard);
 
             json.put("CurrentPlayer", "PlayerOne");
             json.put("PlayerBoard", playerBoard.toString());
@@ -76,7 +76,7 @@ public class TicTacToe {
             JSONObject json = new JSONObject();
 
             int binarySumOfPlayersBoard = binarySum(playerTwo.board);
-            boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
+            boolean winningStatus = checkForVictory(binarySumOfPlayersBoard);
 
             json.put(playerBoard.toString(), String.valueOf(winningStatus));
             json.put("CurrentPlayer", "PlayerTwo");
