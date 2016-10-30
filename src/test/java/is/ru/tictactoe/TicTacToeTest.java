@@ -35,4 +35,5 @@ public class TicTacToeTest {
         int sum = ticTacToe.binarySum(board);
         assertEquals(true, ticTacToe.checkForVictory(sum));
     }
+
 }

@@ -58,7 +58,12 @@ public class TicTacToe {
     // Called by TicTacToeWeb and is client's interface
     // with our server here.
     public JSONObject moveMade(String player, String cell) {
+        System.out.println("calling move made\n");
+        System.out.println(player);
+        System.out.println(cell);
+
         if (player.equals("X")) {
+            System.out.println("making move for X");
             playerOne.makeMove(cell);
             JSONArray playerBoard = new JSONArray(playerOne.board);
             JSONObject json = new JSONObject();
@@ -69,6 +74,7 @@ public class TicTacToe {
             json.put("CurrentPlayer", "PlayerOne");
             json.put("PlayerBoard", playerBoard.toString());
             json.put("HasWon", String.valueOf(winningStatus));
+            System.out.println("checking things");
             return json; // This will be our response to the client
         } else {
             playerTwo.makeMove(cell);
