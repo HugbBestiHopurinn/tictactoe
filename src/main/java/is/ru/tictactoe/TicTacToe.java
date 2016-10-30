@@ -69,7 +69,9 @@ public class TicTacToe {
             int binarySumOfPlayersBoard = binarySum(playerOne.board);
             boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
 
-            json.put(playerBoard.toString(), String.valueOf(winningStatus));
+            json.put("CurrentPlayer", "PlayerOne");
+            json.put("PlayerBoard", playerBoard.toString());
+            json.put("HasWon", String.valueOf(winningStatus));
             return json;
         } else {
             playerTwo.makeMove(cell);
@@ -80,6 +82,9 @@ public class TicTacToe {
             boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
 
             json.put(playerBoard.toString(), String.valueOf(winningStatus));
+            json.put("CurrentPlayer", "PlayerTwo");
+            json.put("PlayerBoard", playerBoard.toString());
+            json.put("HasWon", String.valueOf(winningStatus));
             return json;
         }
     }

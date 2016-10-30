@@ -27,6 +27,7 @@ function computer_moves() {
     console.log("Computer moving");
     console.log("Current player: " + current_player);
     console.log("Game Mode: " + game_mode);
+
     // Actually sending data to server via post request
     randomNumber = Math.floor(Math.floor(Math.random() * 8));
     isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
@@ -42,7 +43,10 @@ function computer_moves() {
     console.log("marking");
     $($('td')[randomNumber]).addClass("marked").html("O");
     $.post(computer_move, function( data ) {
-        console.log(data);
+        if (response["HasWon"] == "true") {
+            alert(response["CurrentPlayer"] + "wins!");
+            window.location.reload().reload();
+        }
     });
     console.log("current player is: " + current_player);
 }
@@ -68,7 +72,11 @@ function mark_move(cell_number) {
 
         // Actually sending data to server via post request
         $.post(player_move, function( data ) {
-            console.log(data);
+            response = JSON.parse(data);
+            if (response["HasWon"] == "true") {
+                alert(response["CurrentPlayer"] + "wins!");
+                window.location.reload().reload();
+            }
         });
         if (game_mode != "single") {
             computer_moves();
