@@ -1,6 +1,7 @@
 package is.ru.tictactoe;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class TicTacToe {
 
@@ -33,31 +34,19 @@ public class TicTacToe {
 
     private class Player {
         public int [] board = {0,0,0,0,0,0,0,0,0};
+        private int binarySumOfPlayersBoard = 0;
+        public boolean hasWon = false;
         public void makeMove(String moveIndex) {
             int move = Integer.parseInt(moveIndex);
             this.board[move] = 1;
+            binarySumOfPlayersBoard = binarySum(this.board);
+            hasWon = check_for_victory(binarySumOfPlayersBoard);
         }
     }
 
-    private class HumanPlayer extends Player {
-        public void makeMove(String moveIndex) {
-            int move = Integer.parseInt(moveIndex);
-            this.board[move] = 1;
-        }
-    }
+    private class HumanPlayer extends Player {}
 
-    private class ComputerPlayer extends Player {
-        public void makeMove(String moveIndex) {
-            int move = Integer.parseInt(moveIndex);
-            this.board[move] = 1;
-        }
-    }
-
-    //public static void main(String args[]) {
-    //    TicTacToe game = new TicTacToe("single");
-    //    int [] board = {1,1,1,0,0,0,1,0,0};
-    //    int sum = game.binarySum(board);
-    //}
+    private class ComputerPlayer extends Player {}
 
     // Called by TicTacToeWeb once at start of game
     // and is client's interface with server here.
@@ -74,15 +63,21 @@ public class TicTacToe {
 
     // Called by TicTacToeWeb and is client's interface
     // with our server here.
-    public JSONArray moveMade(String player, String cell) {
+    public JSONObject moveMade(String player, String cell) {
         if (player.equals("X")) {
             playerOne.makeMove(cell);
             JSONArray playerBoard = new JSONArray(playerOne.board);
-            return playerBoard;
+            JSONObject json = new JSONObject();
+            boolean winningStatus = playerOne.hasWon;
+            json.put(playerBoard.toString(), String.valueOf(winningStatus));
+            return json;
         } else {
             playerTwo.makeMove(cell);
             JSONArray playerBoard = new JSONArray(playerTwo.board);
-            return playerBoard;
+            JSONObject json = new JSONObject();
+            boolean winningStatus = playerOne.hasWon;
+            json.put(playerBoard.toString(), String.valueOf(winningStatus));
+            return json;
         }
     }
 
