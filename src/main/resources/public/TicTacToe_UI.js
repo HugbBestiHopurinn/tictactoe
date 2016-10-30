@@ -23,6 +23,38 @@ $('td').click(function(){
     mark_move(cell_number);
 });
 
+function computer_moves() {
+    console.log("Computer moving");
+    console.log("Current player: " + current_player);
+    console.log("Game Mode: " + game_mode);
+
+    if (current_player == "0" && game_mode != "single") {
+        console.log("Proceeding.");
+        // Actually sending data to server via post request
+        randomNumber = Math.floor(Math.floor(Math.random() * 8));
+        isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
+
+        while (isAlreadyMarked) {
+            randomNumber = Math.floor(Math.floor(Math.random() * 8));
+            isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked");
+            console.log("bingo: " + randomNumber);
+        }
+
+        var computer__move = "computer_move?player=" + current_player + "&cell=" + randomNumber;
+        console.log("marking");
+        $($('td')[randomNumber]).addClass("marked").html("O").css('color', 'rgb(0,0,250)');
+
+        if (isAlreadyMarked == false) {
+            console.log("hello");
+            $($('td')[randomNumber]).addClass("marked").html("O");
+            $.post(computer_move, function( data ) {
+                console.log(data);
+            });
+        }
+        switch_player();
+    }
+}
+
 // Marks the move on the board, if a legal move
 // and let's the server know which move was made.
 function mark_move(cell_number) {
@@ -30,7 +62,6 @@ function mark_move(cell_number) {
     if (cell.hasClass("marked")) {
         alert("You can't do that");
     } else {
-        switch_player();
         cell.addClass("marked");
         if (current_player == "X") {
             cell.css("color", "rgb(250,0,0)");
@@ -47,14 +78,16 @@ function mark_move(cell_number) {
         $.post(player_move, function( data ) {
             console.log(data);
         });
+        switch_player();
+        computer_moves();
     }
 }
 
 function switch_player() {
-    if (current_player == "X") {
-        current_player = "O";
-    } else {
+    if (current_player == "0") {
         current_player = "X";
+    } else {
+        current_player = "0";
     }
 }
 

@@ -22,10 +22,9 @@ public class TicTacToe {
     }
 
     boolean check_for_victory(int sum) {
-
-        int victory_combo [] = {0x1C0, 0x38, 0x92, 0x54, 0x7, 0x124, 0x49};
+        int victory_combo [] = {0x1C0, 0x38, 0x92, 0x54, 0x7, 0x124, 0x49, 0x111};
         boolean win_status = false;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             win_status = ((((victory_combo[i] & sum)
                             == victory_combo[i]) != false) || (win_status != false));
         }
@@ -39,8 +38,6 @@ public class TicTacToe {
         public void makeMove(String moveIndex) {
             int move = Integer.parseInt(moveIndex);
             this.board[move] = 1;
-            binarySumOfPlayersBoard = binarySum(this.board);
-            hasWon = check_for_victory(binarySumOfPlayersBoard);
         }
     }
 
@@ -70,8 +67,8 @@ public class TicTacToe {
             JSONObject json = new JSONObject();
 
             int binarySumOfPlayersBoard = binarySum(playerOne.board);
-
             boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
+
             json.put(playerBoard.toString(), String.valueOf(winningStatus));
             return json;
         } else {
@@ -79,9 +76,9 @@ public class TicTacToe {
             JSONArray playerBoard = new JSONArray(playerTwo.board);
             JSONObject json = new JSONObject();
 
-            int binarySumOfPlayersBoard = binarySum(playerOne.board);
+            int binarySumOfPlayersBoard = binarySum(playerTwo.board);
+            boolean winningStatus = check_for_victory(binarySumOfPlayersBoard);
 
-            boolean winningStatus = playerOne.hasWon;
             json.put(playerBoard.toString(), String.valueOf(winningStatus));
             return json;
         }
