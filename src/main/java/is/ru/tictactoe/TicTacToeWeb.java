@@ -19,18 +19,8 @@ public class TicTacToeWeb implements SparkApplication {
 
     @Override
     public void init() {
-        final Main ticTacToe = new Main();
-        //post("/random", (req, res) -> chuck.random());
-        post("/player_move", (req, res) -> ticTacToe.make_move(req.queryParams("player"), req.queryParams("cell")));
-        //post("/id", (req, res) -> chuck.getById(req.queryParams("id")));
-        //post("/setName", (req, res) -> {
-        //        chuck.alterName(
-        //                        req.queryParams("firstName"),
-        //                        req.queryParams("lastName")
-        //                        );
-        //        res.status(200);
-        //        return res;
-        //    });
+        final TicTacToe ticTacToe = new TicTacToe();
+        post("/init_game", (req, res) -> ticTacToe.init(req.queryParams("game_mode")));
+        post("/player_move", (req, res) -> ticTacToe.moveMade(req.queryParams("player"), req.queryParams("cell")));
     }
-
 }

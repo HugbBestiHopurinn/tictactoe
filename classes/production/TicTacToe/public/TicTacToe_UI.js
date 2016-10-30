@@ -2,23 +2,30 @@
 current_player = "X";
 game_mode = "single";
 $('table').hide();
+alert("hello");
 
-// Select Game Mode
-// Single Player or Multiplayer
-$('.btn').click(function (){
-    if ($(this).attr("game_mode") == "multi") {
-        game_mode = "single";
-    } else {
-        game_mode = "multi";
-    }
-    $('ul').hide();
-    $('table').show();
-});
+$('document').ready(function() {
+    // Select Game Mode
+    // Single Player or Multiplayer
+    $('button.btn').click(function (){
+        if ($(this).attr("game_mode") == "multi") {
+            game_mode = "single";
+            $.post("init_game?" + game_mode, function( data ) { alert(data) });
+            console.log("Single game");
+        } else {
+            game_mode = "multi";
+            $.post("init_game?" + game_mode, function( data ) { alert(data) });
+            console.log("Multi game");
+        }
+        $('ul').hide();
+        $('table').show();
+    });
 
-// Clicking square on board
-$('td').click(function(){
-    var cell_number = $(this).attr("data-id");
-    mark_move(cell_number);
+    // Clicking square on board
+    $('td').click(function(){
+        var cell_number = $(this).attr("data-id");
+        mark_move(cell_number);
+    });
 });
 
 // Marks the move on the board, if a legal move
@@ -39,8 +46,7 @@ function mark_move(cell_number) {
         // Notify Server of Move
         var player_move = "player_move?player=" + current_player + "&cell=" + cell_number;
         console.log("Player move: " + player_move);
-        $.post(player_move, function( data ) {
-        });
+        $.post(player_move, function( data ) { alert(data) });
     }
 }
 
