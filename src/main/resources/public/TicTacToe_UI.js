@@ -36,9 +36,12 @@ function mark_move(cell_number) {
             cell.css("color", "rgb(0,0,250)");
         }
         cell.html(current_player);
+
         // Notify Server of Move
-        var player_move = "player_move?player=" + current_player + "&cell=" + cell_number;
+        var player_move = "player_move?player=" + current_player + "&cell=" + cell_number + "&game_mode=" + game_mode;
         console.log("Player move: " + player_move);
+
+        // Actually sending data to server via post request
         $.post(player_move, function( data ) {
         });
     }
