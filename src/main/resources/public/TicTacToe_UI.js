@@ -52,7 +52,7 @@ $('td').click(function(){
                 if (game_mode == "multi") {
                     computer_moves();
                 }
-            }, 1000);
+            }, 500);
         });
     }
 
@@ -69,7 +69,7 @@ function computer_moves() {
         randomNumber = Math.floor(Math.floor(Math.random() * 8));
         isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked") && $('.marked').length != 9;
     }
-    
+
     var computer_move = "player_move?player=" + current_player + "&cell=" + randomNumber;
     $($('td')[randomNumber]).addClass("marked").html("0").css('color', 'rgb(0,0,250)');
 
