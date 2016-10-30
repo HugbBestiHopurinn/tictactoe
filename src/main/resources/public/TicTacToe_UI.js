@@ -69,51 +69,25 @@ function computer_moves() {
         randomNumber = Math.floor(Math.floor(Math.random() * 8));
         isAlreadyMarked = $($('td')[randomNumber]).hasClass("marked") && $('.marked').length != 9;
     }
+    
     var computer_move = "player_move?player=" + current_player + "&cell=" + randomNumber;
     $($('td')[randomNumber]).addClass("marked").html("0").css('color', 'rgb(0,0,250)');
 
     $.post(computer_move, function( data ) {
         response = JSON.parse(data);
         if (response["HasWon"] == "true") {
-            alert(response["CurrentPlayer"] + "wins!");
+            alert(response["CurrentPlayer"] + " wins!");
             window.location.reload();
         } else if (($('td.marked').length + 1) == 9){
             alert("It's a draw!");
             window.location.reload();
         } else {
-            //cell.addClass("marked").html(current_player);
-            //if (current_player == "X") {
-            //    cell.css("color", "rgb(250,0,0)");
-            //} else {
-            //    cell.css("color", "rgb(0,0,250)");
-            //}
             switch_player();
         }
     })
 
 
 }
-
-//function computer_moves() {
-//    $.post(computer_move, function( data ) {
-//        response = JSON.parse(data);
-//        if (response["HasWon"] == "true") {
-//            alert(response["CurrentPlayer"] + "wins!");
-//            window.location.reload();
-//        } else if (($('td.marked').length + 1) == 9){
-//            alert("It's a draw!");
-//            window.location.reload();
-//        } else {
-//            cell.addClass("marked").html(current_player);
-//            if (current_player == "X") {
-//                cell.css("color", "rgb(250,0,0)");
-//            } else {
-//                cell.css("color", "rgb(0,0,250)");
-//            }
-//            switch_player();
-//        }
-//    })
-//}
 
 // Marks the move on the board, if a legal move
 // and let's the server know which move was made.
@@ -138,7 +112,7 @@ function mark_move(cell_number) {
         $.post(player_move, function( data ) {
             response = JSON.parse(data);
             if (response["HasWon"] == "true") {
-                alert(response["CurrentPlayer"] + "wins!");
+                alert(response["CurrentPlayer"] + " wins!");
                 window.location.reload().reload();
             } else if ($('.marked').length == 9){
                 alert("It's a draw!");
