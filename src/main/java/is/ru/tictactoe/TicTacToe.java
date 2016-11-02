@@ -83,7 +83,6 @@ public class TicTacToe {
             json.put("PlayerBoard", playerBoard.toString());
             json.put("HasWon", String.valueOf(winningStatus));
             return json; // This is our response to the client
-
         }
     }
 }
